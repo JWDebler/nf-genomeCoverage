@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 
 //+++++++++++++++++ SETUP++++++++++++++++++++++++
-params.workdir = "/home/johannes/rdrive/PPG_SEQ_DATA-LICHTJ-SE00182/johannes/notebook/bcinerea_test"
+params.workdir = "/home/johannes/rdrive/PPG_SEQ_DATA-LICHTJ-SE00182/johannes/notebook/2018-05-14-Botrytis_github"
 params.refs = "${params.workdir}/reference/*.fasta"
 params.input = "${params.workdir}/input/*.fasta"
 params.outdir = "${params.workdir}/output"
@@ -177,5 +177,9 @@ data %>%
   """
 }
 
-debug.println()
-debug2.println()
+workflow.onComplete {
+    log.info "========================================================"
+    log.info "Pipeline completed at: $workflow.complete"
+    log.info "Execution status: ${ workflow.success ? 'OK' : 'Failed' }"
+    log.info "========================================================"
+}
